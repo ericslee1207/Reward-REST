@@ -1,0 +1,66 @@
+1. Why did you choose the tools, libraries, and language you used for the coding exercise?
+    I used Express on top of node.js to build REST API's for the backend web server. 
+    Since this is API currently only serves 2 POST and 1 GET requests, I used
+    Express because it is lightweight and efficient for minimalistic applications. 
+    Furthermore, the data that is processed and stored are hierarchical objects so 
+    using a JavaScript framework like Node.js provided easier integration compared to 
+    a framework that primarily uses relational tables such as Django Rest Framework. 
+    Also, the requirements of this app didn't necessitate any Python ecosystem functions
+    such as data visualization or machine learning libraries so I chose JS over Python.
+
+    I used Express Validator to check if the request body contains valid data because
+    the library is specifically built for Express apps. This middleware approach 
+    works seamlessly with Express and doesn't require any custom validation logic. 
+
+    Additionally, I used  jest and supertest because they provide a powerful combination 
+    for unit testing in a JavaScript application. Jest has comprehensive testing capabilities, 
+    and due to it being open source, there are lots of online resources that assist testing
+    with Jest. Supertest makes it very easy to test HTTP endpoints.
+
+2. What are the advantages and disadvantages of your solution?
+    My solution maintains an invariant that the transactions that are stored as in-memory 
+    JavaScript variables are sorted by timestamp in descending order. So older transactions are
+    stored toward the end of the list while newer ones are at the start. 
+
+    The advantage of maintaining this invariant is that spending points API runs faster compared
+    to that of an unordered list. Since the transactions are already sorted, I can traverse
+    the list backwards to deduct points from payers of earlier transactions. Since the list
+    is traversed linearly, the runtime is O(n), where n is the number of transactions. If the
+    list is unordered, I would have to sort the list first which would take O(nlogn) time. 
+
+    However, this invariant makes the add API run slower. New transactions would have to be 
+    inserted at the sorted index of the list to maintain sortedness, which can take O(n) time.
+    I can use binary search instead of linearly traversing to find the target index, but 
+    inserting an element would still have to shift elements to the right by 1, so O(n) is the
+    time complexity regardless. On the other hand, the unordered implementation would be O(1)
+    because I can simply append the transaction to the end of the list. 
+
+    Overall, my current implementation has a faster spend API but slower add API. This 
+    approach would be advantageous where spend API's are called more frequently than add. 
+    On the other hand, the vice versa is also true. 
+    
+    However, the expected runtime of the add API could be shorter in practice. Since most input transactions are likely to be newer transactions, they would probably be placed near
+    the beginning of the array, thus not needing to traverse the entire transactions array. 
+    Therefore in practice, the add API could have a runtime closer to O(1).
+
+    The last implementation with O(logn) add and spend runtime would be to use a min heap. 
+    I considered heap implementation, but due to the lack of built-in JS heap functions, I would list heap as
+    a potential future optimization.
+
+3. What has been a favorite school/personal project thus far? What about it that challenged you?
+    My favorite project thus far is a passion project that turned into a startup. In a team of 3,
+    I built a full stack mobile app that make it easier for community organizations to process
+    transactions by enabling transparency, security, and credibility. The app, Fundsy, 
+    integrates banking API's to allow community organizations to sign up through the app to 
+    send and receive donations in a user-friendly manner. 
+
+    Building this app challenged me in technical and non-technical ways. Learning all the new 
+    tools to build a mobile app such as React Native, Node, and Firebase was no easy feat, but 
+    managing sprints, meeting with clients, and adapting to the agile methodology was tough 
+    as well. From the app crashing from unforeseen bugs to clients backing out at the last 
+    second, managing a large scale project with real transactions necessitated a lot of 
+    planning, documentation, communication, and collaboration. 
+
+    Building and releasing this app to be used by hundreds of organizations worldwide taught
+    me the critical skills of not only being updated with the best coding practices and 
+    technologies, but also managing healthy relationships with clients and team. 
