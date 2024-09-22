@@ -25,7 +25,7 @@ REST API service that accepts POST and GET HTTP requests
     ```
 2) Clone GitHub Repository
     ```
-    git clone ___
+    git clone https://github.com/ericslee1207/Reward-REST.git
     ```
 3) Navigate to project's root directory
     ```
