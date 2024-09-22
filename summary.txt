@@ -39,13 +39,14 @@
     approach would be advantageous where spend API's are called more frequently than add. 
     On the other hand, the vice versa is also true. 
     
-    However, the expected runtime of the add API could be shorter in practice. Since most input transactions are likely to be newer transactions, they would probably be placed near
+    However, the expected runtime of the add API could be shorter in practice. Since most input 
+    transactions are likely to be newer transactions, they would probably be placed near
     the beginning of the array, thus not needing to traverse the entire transactions array. 
     Therefore in practice, the add API could have a runtime closer to O(1).
 
     The last implementation with O(logn) add and spend runtime would be to use a min heap. 
-    I considered heap implementation, but due to the lack of built-in JS heap functions, I would list heap as
-    a potential future optimization.
+    I considered heap implementation, but due to the lack of built-in JS heap functions, I would 
+    list heap as a potential future optimization.
 
 3. What has been a favorite school/personal project thus far? What about it that challenged you?
     My favorite project thus far is a passion project that turned into a startup. In a team of 3,
