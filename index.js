@@ -55,7 +55,7 @@ app.post('/add', [
 
     totalPoints += points;
     payerPoints[payer] = (payerPoints[payer] || 0) + points;
-    res.status(201).send("Transaction added successfully");
+    res.status(200).send("Transaction added successfully");
 });
 
 // O(n) runtime
@@ -71,7 +71,7 @@ app.post('/spend', [
     
     // Check if the user has enough total points to spend
     if (totalPoints < points) {
-        return res.status(400).send("User does not have enough points");
+        return res.status(400).send("User doesn't have enough points");
     }
 
     let paidAmounts = {};
@@ -116,7 +116,7 @@ app.post('/spend', [
     totalPoints -= points;
 
     // Return the paid amounts per payer
-    res.status(201).send(paidList);
+    res.status(200).send(paidList);
 });
 
 
